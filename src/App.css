@@ -15,23 +15,3 @@ BNR lettering - #505153;
 .Blog-right {
   background-color: red;
 }
-
-.App-header  {
-  height: 10vmin;
-  background-color: orange;
-
-}
-
-.App-logo {
-  padding: 1.25rem;
-  pointer-events: none;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

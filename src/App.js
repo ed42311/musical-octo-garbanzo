@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
-import uuid from 'uuid';
+import styled from 'styled-components';
+
 import logo from './logo.svg';
 import './App.css';
 
-import Article from './components/Article';
+import Main from './components/Main';
 
 class App extends Component  {
-
   state = {
     userId: 1,
     currentUserArticles: [],
-    publicArticles: []
+    publicArticles: [],
+    isLoading: false,
+    error: {
+      code: 0,
+      message: ''
+    }
   }
 
   filterArticles = (all, curUserId) => {
@@ -20,47 +25,46 @@ class App extends Component  {
     }
   }
 
-  componentDidMount() {
+  fetchArticles = () => {
     fetch('https://jsonplaceholder.typicode.com/posts')
-    .then(res => res.json())
-    .then(data => {
-      const { userId } = this.state;
-      this.setState(this.filterArticles(data, userId));
-    })
-    .catch(err => console.log(err));
+      .then(res => res.json())
+      .then(data => {
+        const { userId } = this.state;
+        this.setState(this.filterArticles(data, userId));
+      })
+      .catch(err => {
+        let { code, message } = this.state.error
+        code = 1;
+        message = "Ouch! Your data didn't get here."
+      });
+  }
+
+  async componentDidMount() {
+    this.setState({isLoading: !this.state.isLoading});
+    await this.fetchArticles();
+    this.setState({isLoading: !this.state.isLoading});
   }
 
   render () {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-        <main className="Blog-main">
-          <section className="Blog-left">
-            {this.state.currentUserArticles.map(
-              article => 
-                <Article 
-                  key={uuid()}
-                  customClass="Article-current-user"
-                  article={article}
-                />
-            )}
-          </section>
-          <section className="Blog-right">
-            {this.state.publicArticles.map(
-              article => 
-                <Article 
-                  key={uuid()}
-                  customClass="Article-public-user"
-                  article={article}
-                />
-            )}
-          </section>
-        </main>
+        <AppHeader>
+          <AppLogo src={logo} className="App-logo" alt="logo" />
+        </AppHeader>
+        <Main {...this.state}/>
       </div>
     );
   }
 }
+
+const AppHeader = styled.header`
+  height: 10vmin;
+  background-color: orange;
+`
+
+const AppLogo = styled.img`
+  padding: 1.25rem;
+  pointer-events: none;
+`
 
 export default App;
