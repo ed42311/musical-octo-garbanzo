@@ -24,3 +24,21 @@ Feel free to reach out to Josh Justice jjustice@bignerdranch.com with questions!
 * [x] Error handle for fetch and comp
 * [x] Rudimentary Css
 * [x] End to end tests
+
+## To install
+
+Node modules has been deleted to reduce overall file size, once you uncompress the folder you will need to run:
+
+`npm install` or `yarn install`
+
+## To run
+
+After this is run you should be able to run:
+
+`npm start` or `yarn start`
+
+## To run tests
+
+The tests were built with puppeteer, the development server will need to be running.  Once the dev server is running you can run teh tests with:
+
+`npm test` or `yarn test`
