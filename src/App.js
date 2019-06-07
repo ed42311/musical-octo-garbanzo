@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import logo from './logo.svg';
-import './App.css';
 
 import { fetchArticles } from './store/actions';
 import Main from './components/Main';
@@ -15,18 +14,12 @@ class App extends Component  {
     this.props.fetchArticles(userId);
   }
 
-  loadingArticles(){
-    if(this.props.isloading){
-      return <p>Loading....</p>
-    } 
-  }
-
   render () {
-    console.log(this.props);
     return (
       <div className="App">
         <AppHeader>
           <AppLogo src={logo} className="App-logo" alt="logo" />
+          <RightText id="App-navbar-text">Articles</RightText>
         </AppHeader>
         <Main {...this.props}/>
       </div>
@@ -35,13 +28,21 @@ class App extends Component  {
 }
 
 const AppHeader = styled.header`
-  height: 10vmin;
-  background-color: orange;
+  height: 12vmin;
+  background-color: #14080e;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
 
 const AppLogo = styled.img`
   padding: 1.25rem;
   pointer-events: none;
+`
+
+const RightText = styled.h1`
+  padding-right: 2.25rem;
+  color: orange;
 `
 
 const mapStateToProps = state => state;
