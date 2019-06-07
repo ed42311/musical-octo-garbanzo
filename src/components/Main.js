@@ -1,35 +1,52 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import uuid from 'uuid';
 
 import Article from './Article';
+import ErrorBoundary from './ErrorBoundary';
 
 function Main({ currentUserArticles, publicArticles }) {
   return (
-    <AppMain className="Blog-main">
-      <MainSection className="Blog-left">
-        {currentUserArticles.map(
-          article => 
-            <Article 
-              key={`${article.id}-${uuid()}`}
-              customClass="Article-current-user"
-              article={article}
-            />
-        )}
-      </MainSection>
-      <MainSection className="Blog-right">
-        {publicArticles.map(
-          article => 
-            <Article 
-              key={`${article.id}-${uuid()}`}
-              customClass="Article-public-user"
-              article={article}
-            />
-        )}
-      </MainSection>
-    </AppMain>
+    <ErrorBoundary>
+      <AppMain className="Blog-main">
+        <MainSection className="Blog-left">
+          {currentUserArticles.map(
+            article => 
+              <Article 
+                key={`${article.id}-${uuid()}`}
+                customClass="Article-current-user"
+                article={article}
+              />
+          )}
+        </MainSection>
+        <MainSection className="Blog-right">
+          {publicArticles.map(
+            article => 
+              <Article 
+                key={`${article.id}-${uuid()}`}
+                customClass="Article-public-user"
+                article={article}
+              />
+          )}
+        </MainSection>
+      </AppMain>
+    </ErrorBoundary>
   );
 }
+
+Main.propTypes = {
+  currentUserArticles: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    body: PropTypes.string,
+    id: PropTypes.number
+  })),
+  publicArticles: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    body: PropTypes.string,
+    id: PropTypes.number
+  }))
+};
 
 const AppMain = styled.main`
   display: flex;

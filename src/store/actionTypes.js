@@ -1,0 +1,4 @@
+export const RECEIVED_ARTICLES = "RECEIVED_ARTICLES";
+export const REQUEST_ARTICLES = "REQUEST_ARTICLES";
+export const FETCH_ERROR = "FETCH_ERROR";
+export const COMP_ERROR = "COMP_ERROR";
