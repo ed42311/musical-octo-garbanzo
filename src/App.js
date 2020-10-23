@@ -18,7 +18,6 @@ class App extends Component  {
     return (
       <div className="App">
         <AppHeader>
-          <AppLogo src={logo} className="App-logo" alt="logo" />
           <RightText id="App-navbar-text">Articles</RightText>
         </AppHeader>
         <Main {...this.props}/>
@@ -29,10 +28,14 @@ class App extends Component  {
 
 const AppHeader = styled.header`
   height: 12vmin;
-  background-color: #14080e;
+  background-color: #5a6969;
+  border-bottom: 1px solid #757779;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  -webkit-box-shadow: 10px 11px 29px -28px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 11px 29px -28px rgba(0,0,0,0.75);
+  box-shadow: 10px 11px 29px -28px rgba(0,0,0,0.75);
 `
 
 const AppLogo = styled.img`
@@ -42,7 +45,7 @@ const AppLogo = styled.img`
 
 const RightText = styled.h1`
   padding-right: 2.25rem;
-  color: orange;
+  color: black;
 `
 
 const mapStateToProps = state => state;

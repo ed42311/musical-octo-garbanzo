@@ -13,7 +13,7 @@ function Main({ currentUserArticles, publicArticles, isLoading }) {
         {
           isLoading ? 
           <h2>Loading....</h2> :
-          <MainSection bgColor={'#799496'} className="Article-left">
+          <MainSection bgColor={'gray'} className="Article-left">
             <h2>Private</h2>
             {currentUserArticles.map(
               article => 
@@ -28,7 +28,7 @@ function Main({ currentUserArticles, publicArticles, isLoading }) {
         {
           isLoading ? 
           <h2>Loading Articles....</h2> :
-          <MainSection bgColor={'#505153'} className="Atricle-right">
+          <MainSection bgColor={'#505153'} className="Article-right">
             <h2>Public</h2>
             {publicArticles.map(
               article => 
